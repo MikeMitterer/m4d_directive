@@ -18,24 +18,6 @@
  */
 part of m4d_directive;
 
-class _Condition {
-    final String name;
-    final bool negate;
-    final String classToChange;
-
-    _Condition(this.name, this.negate, this.classToChange);
-
-    @override
-    bool operator ==(Object other) =>
-        identical(this, other) ||
-            other is _Condition &&
-                runtimeType == other.runtimeType &&
-                name == other.name;
-
-    @override
-    int get hashCode => name.hashCode;
-}
-
 /**
  * Checks the given condition and adds the given class-name to the components [element].
  * Format: [!]<variable> : '<classname>'
@@ -199,3 +181,21 @@ class _MaterialClassConstant {
     const _MaterialClassConstant();
 }
 
+/// Helper-Class for managing Css-Class-Conditions
+class _Condition {
+    final String name;
+    final bool negate;
+    final String classToChange;
+
+    _Condition(this.name, this.negate, this.classToChange);
+
+    @override
+    bool operator ==(Object other) =>
+        identical(this, other) ||
+            other is _Condition &&
+                runtimeType == other.runtimeType &&
+                name == other.name;
+
+    @override
+    int get hashCode => name.hashCode;
+}
