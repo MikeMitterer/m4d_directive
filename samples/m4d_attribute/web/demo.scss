@@ -1,0 +1,31 @@
+@import "package:m4d_components/assets/styles/material-design-lite";
+@import "app";
+
+.demo-page--attribute, .demo-section--attribute {
+    .mdl-textfield__label {
+
+        > .enabled {
+            display: none;
+        }
+
+        > .disabled {
+            display: inline;
+        }
+
+        &.enabled > {
+            .enabled {
+                display: inline;
+            }
+            .disabled {
+                display: none;
+            }
+        }
+    }
+    .mdl-layout p, .switches {
+        margin-top: 1em;
+    }
+
+    .switches, .controls, .mdl-layout p {
+        padding: 1em;
+    }
+}

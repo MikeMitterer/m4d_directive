@@ -55,7 +55,7 @@ class MaterialClass extends MdlComponent {
     bool _isElementAWidget = null;
     
     final SimpleDataStore _store;
-    final _conditions = Set<_Condition>();
+    final _conditions = Set<_ClassCondition>();
 
     MaterialClass.fromElement(final dom.HtmlElement element,final ioc.IOCContainer iocContainer)
         : _store = iocContainer.resolve(service.SimpleDataStore).as<SimpleDataStore>(),
@@ -85,7 +85,7 @@ class MaterialClass extends MdlComponent {
         /// Recommended - add SELECTOR as class
         element.classes.add(_MaterialClassConstant.WIDGET_SELECTOR);
 
-        final Map<String,String> conditions = _splitConditions(_attribute);
+        final Map<String,String> conditions = splitConditions(_attribute);
         conditions.forEach((String varname,final String classname) {
             //_logger.info("Var: $varname -> $classname");
 
@@ -94,46 +94,58 @@ class MaterialClass extends MdlComponent {
                 varname = varname.replaceFirst("!","");
             }
 
-            _conditions.add(_Condition(varname, negateValue, classname));
+            _conditions.add(_ClassCondition(varname.trim(), negateValue,
+                classname.trim()
+                    .replaceFirst(RegExp(r"^'"), "")
+                    .replaceFirst(RegExp(r"'$"), ""))
+            );
         });
 
         _bindActions();
+        _updateClasses();
 
         element.classes.add(_cssClasses.IS_UPGRADED);
     }
 
+    /// Binds Actions/Events to the stores "DataStoreChangedEvent"
     void _bindActions() {
         // only after creation...
         if(_store == null) { return; }
 
         eventStreams.add(
-            _store.onChange.listen((final DataStoreChangedEvent event) {
-                _conditions.forEach((final _Condition condition) {
-
-                    void _updateClass(final bool value,final String classname) {
-                        if(value) {
-                            element.classes.add(classname);
-                        } else {
-                            element.classes.remove(classname);
-                        }
-
-                        if(_isWidget) {
-                            final MdlComponent component = mdlComponent(element,null);
-                            component.update();
-                        }
-                    }
-
-                    if(_store.contains(condition.name)) {
-                        _updateClass(
-                            condition.negate
-                                ? !_store.asBool(condition.name)
-                                : _store.asBool(condition.name), condition.classToChange);
-                    } else {
-                        _logger.warning("Store does not contain '${condition.name}!");
-                    }
-                });
-            })
+            _store.onChange.listen((final DataStoreChangedEvent event) => _updateClasses())
         );
+    }
+
+    /// Updates all classes
+    void _updateClasses() {
+        _conditions.forEach((final _ClassCondition condition) {
+
+            void _updateClass(final String classname, final bool value) {
+                if(value) {
+                    element.classes.add(classname);
+                } else {
+                    element.classes.remove(classname);
+                }
+            }
+
+            if(_store.contains(condition.name)) {
+                _updateClass(condition.classToChange,
+                    condition.negate
+                        ? !_store.asBool(condition.name)
+                        : _store.asBool(condition.name)
+                );
+            } else {
+                element.classes.remove(condition.classToChange);
+                _logger.warning("Store does not contain '${condition.name}!");
+            }
+
+            if(_isWidget) {
+                final MdlComponent component = mdlComponent(element,null);
+                component.update();
+            }
+
+        });
     }
 
     /// Returns true if current element is a 'MaterialWidget' (MdlConfig.isWidget...)
@@ -182,17 +194,17 @@ class _MaterialClassConstant {
 }
 
 /// Helper-Class for managing Css-Class-Conditions
-class _Condition {
+class _ClassCondition {
     final String name;
     final bool negate;
     final String classToChange;
 
-    _Condition(this.name, this.negate, this.classToChange);
+    _ClassCondition(this.name, this.negate, this.classToChange);
 
     @override
     bool operator ==(Object other) =>
         identical(this, other) ||
-            other is _Condition &&
+            other is _ClassCondition &&
                 runtimeType == other.runtimeType &&
                 name == other.name;
 

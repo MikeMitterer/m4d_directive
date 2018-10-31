@@ -21,28 +21,26 @@ part of m4d_directive;
 
 /// Splits [conditionToSplit] into varnames and classnames.
 /// Format: <condition> : '<classname>', <condition> : '<classname>' ...
-Map<String,String> _splitConditions(final String conditionToSplit) {
+Map<String, String> splitConditions(final String conditionToSplit) {
     final Logger _logger = new Logger('mdltemplate._splitConditions');
 
     Validate.notNull(conditionToSplit);
 
-    final Map<String,String> result = new Map<String,String>();
+    final Map<String, String> result = new Map<String, String>();
 
-    if(conditionToSplit.isNotEmpty) {
+    if (conditionToSplit.isNotEmpty) {
         final List<String> conditions = conditionToSplit.split(",");
         conditions.forEach((final String condition) {
-            final List<String> details = condition.split(":");
-            if(details.length == 2) {
-
-                final String varname = details.first.trim();
-                final String classname = details.last.replaceAll("'","").trim();
-                result[varname] = classname;
-                //_logger.info("Var: $varname -> $classname");
-
-            } else {
-
-                _logger.shout("Wrong condition format! Format should be <condition> : '<classname>' but was ${condition}");
-
+            final index = condition.indexOf(":");
+            if (index >= 0) {
+                final varname = condition.substring(0, index - 1).trim();
+                final expression = condition.substring(index + 1).trim();
+                result[varname] = expression;
+                _logger.fine("Var: $varname -> $expression");
+            }
+            else {
+                _logger.shout(
+                    "Wrong condition format! Format should be <condition> : '<classname>' but was ${condition}");
             }
         });
     }
