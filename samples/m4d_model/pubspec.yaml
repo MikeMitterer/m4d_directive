@@ -1,8 +1,11 @@
-name: mdld_model_sample
-description: Material Design Lite 'mdld_class' Sample
-version: 0.1.3
+name: m4d_model_sample
+description: Material4Dart (m4d) 'm4d_model' Sample
+version: 0.1.0
 author: Mike Mitterer <office@mikemitterer.at>
 homepage: https://github.com/MikeMitterer/dart-material-design-lite
+
+environment:
+  sdk: ">=2.0.0 <3.0.0"
 
 dependencies:
 

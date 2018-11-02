@@ -1,12 +1,11 @@
 <!doctype html>
-<html lang="">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Material Design Lite (MDL/Dart) for Dart is a library of components for web developers based on Google's Material Design, ported to Dart.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CLASS</title>
-
+    <title>MODEL</title>
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
@@ -38,10 +37,8 @@
         body.mdl-upgrading div.loading { display: block; }
 
         header, body { padding: 0; margin: 0; }
-
-
-
     </style>
+
 </head>
 <body class="demo-page demo-page--model mdl-upgrading" >  <div class="loading">Loading...</div>
 <div class="mdl-layout mdl-layout--fixed-header mdl-color--grey-100">
@@ -60,7 +57,8 @@
                 <section class="demo-section demo-section--model">
                     <div class="demo-preview-block">
     <div class="mdl-textfield">
-        <input class="mdl-textfield__input" type="text" id="sample1" mdl-model="modelTest.minimodel"/>
+        <input class="mdl-textfield__input" type="text" id="sample1"
+               mdl-model="modelTest.minimodel"/>
         <label class="mdl-textfield__label" for="sample1">Type Something...</label>
     </div>
 
@@ -82,29 +80,34 @@
         <div class="mdl-radio-group" mdl-model="modelTest.wifi">
             <div class="choose">Choose WIFI:</div>
             <label class="mdl-radio mdl-ripple-effect" for="wifi1">
-                <input type="radio" id="wifi1" class="mdl-radio__button" name="wifi[]" value="always"/>
+                <input type="radio" id="wifi1" class="mdl-radio__button" name="wifi[]"
+                       value="always"/>
                 <span class="mdl-radio__label">Always</span>
             </label>
 
             <label class="mdl-radio mdl-ripple-effect" for="wifi2">
-                <input type="radio" id="wifi2" class="mdl-radio__button" name="wifi[]" value="plugged in"/>
+                <input type="radio" id="wifi2" class="mdl-radio__button" name="wifi[]"
+                       value="plugged in"/>
                 <span class="mdl-radio__label">When plugged in</span>
             </label>
 
             <label class="mdl-radio mdl-ripple-effect" for="wifi3">
-                <input type="radio" id="wifi3" class="mdl-radio__button" name="wifi[]" value="never"/>
+                <input type="radio" id="wifi3" class="mdl-radio__button" name="wifi[]"
+                       value="never"/>
                 <span class="mdl-radio__label">Never</span>
             </label>
         </div>
         <div class="switch-group">
             <div class="choose">Lights:</div>
             <label class="mdl-switch mdl-ripple-effect" for="switch-bedroom">
-                <input type="checkbox" id="switch-bedroom" class="mdl-switch__input" mdl-model="modelTest.lights[0]"/>
+                <input type="checkbox" id="switch-bedroom" class="mdl-switch__input"
+                       mdl-model="modelTest.lights[0]"/>
                 <span class="mdl-switch__label">Bedroom</span>
             </label>
 
             <label class="mdl-switch mdl-ripple-effect" for="switch-livingroom">
-                <input type="checkbox" id="switch-livingroom" class="mdl-switch__input" mdl-model="modelTest.lights[1]" />
+                <input type="checkbox" id="switch-livingroom" class="mdl-switch__input"
+                       mdl-model="modelTest.lights[1]"/>
                 <span class="mdl-switch__label">Living room</span>
             </label>
         </div>
@@ -116,16 +119,22 @@
     </div>
 
     <div class="output mdl-color--200 mdl-color-text--white">
-        Text in TextField: <span class="mdl-color-text--accent-500" mdl-model="modelTest.minimodel"></span><br>
+        Text in TextField: <span class="mdl-color-text--accent-500"
+                                 mdl-model="modelTest.minimodel"></span><br>
         OS1: <span class="mdl-color-text--accent-500" mdl-model="modelTest.os1"></span><br>
         OS2: <span class="mdl-color-text--accent-500" mdl-model="modelTest.os2"></span><br>
         WIFI: <span class="mdl-color-text--accent-500" mdl-model="modelTest.wifi"></span><br>
-        Light #1: <span class="mdl-color-text--accent-500" mdl-model="modelTest.lights[0]"></span><br>
-        Light #2: <span class="mdl-color-text--accent-500" mdl-model="modelTest.lights[1]"></span><br>
-        Intensity: <span class="mdl-color-text--accent-500" mdl-model="modelTest.intensity"></span><br>
+        Light #1: <span class="mdl-color-text--accent-500"
+                        mdl-model="modelTest.lights[0]"></span><br>
+        Light #2: <span class="mdl-color-text--accent-500"
+                        mdl-model="modelTest.lights[1]"></span><br>
+        Intensity: <span class="mdl-color-text--accent-500"
+                         mdl-model="modelTest.intensity"></span><br>
     </div>
 
 </div>
+
+
 
 
                 </section>
@@ -134,8 +143,10 @@
     </main>
     <footer class="mdl-mini-footer">
         <div class="mdl-mini-footer--left-section">
-            <p class="sitegen-link">Page was generated with <a href="https://pub.dartlang.org/packages/sitegen" target="_blank">SiteGen.</a>
-             <span class="additional-info">The static site generator for Dart.</span></p>
+            <div>Sample for pub-package:
+                <a href="https://pub.dartlang.org/packages/m4d_directive" target="_blank">m4d_directive</a>
+                <span class="published">/ published: <span class="pubdate">2018-11-02 / 17:46:33</span></span>
+            </div>
         </div>
         <div class="mdl-mini-footer--right-section">
             <p class="mm-link">Brought to you by:
@@ -145,11 +156,11 @@
 
     </footer>
 </div>
-<a href="https://github.com/MikeMitterer/dart-material-design-lite-site/tree/master/samples/mdld_model/web" target="_blank" id="view-source">
+<a href="https://github.com/MikeMitterer/m4d_directive/tree/master/samples/m4d_model/web" target="_blank" id="view-source">
     <button class="mdl-button mdl-button--fab mdl-ripple-effect mdl-button--accent"><i class="material-icons">pageview</i></button>
 </a>
-<script defer src="main.dart.js"></script>
 
+<script defer src="main.dart.js"></script>
 
 <!-- Analytics -->
 <script>

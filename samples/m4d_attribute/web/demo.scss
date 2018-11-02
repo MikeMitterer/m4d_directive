@@ -21,11 +21,11 @@
             }
         }
     }
-    .mdl-layout p, .switches {
+    .demo-preview-block > p, .switches {
         margin-top: 1em;
     }
 
-    .switches, .controls, .mdl-layout p {
+    .switches, .controls, .demo-preview-block > p {
         padding: 1em;
     }
 }

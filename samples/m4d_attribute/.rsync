@@ -1,14 +1,15 @@
 # Rsync-Destination für dieses sample
 #
 #   - ssh ls2
-#   - cat ~/website/config/nginx/_template.conf.txt | sed -e 's/%example%/mdld_attribute/' > ~/website/config/nginx/mdld_attribute.conf
-#   - cat ~/website/config/nginx/mdld_attribute.conf
-#   - sudo mkdir -p ~/website/data/example/mdld_attribute
-#   - sudo chown ubuntu:ubuntu ~/website/data/example/mdld_attribute
-#   - sudo chmod 775 ~/website/data/example/mdld_attribute
-#   - ls -lad ~/website/data/example/mdld_attribute
+#   - cat ~/website/config/nginx/_template.conf.txt | sed -e 's/%example%/m4d_attribute/' > ~/website/config/nginx/m4d_attribute.conf
+#   - cat ~/website/config/nginx/m4d_attribute.conf
+#   - sudo mkdir -p ~/website/data/example/m4d_attribute
+#   - sudo chown ubuntu:ubuntu ~/website/data/example/m4d_attribute
+#   - sudo chmod 775 ~/website/data/example/m4d_attribute
+#   - echo 'm4d_attribute' > ~/website/data/example/m4d_attribute/index.html
+#   - ls -lad ~/website/data/example/m4d_attribute
 #   - cd ~/website && docker-compose restart
 #
-RSYNC_DESTINATION=":~/website/data/example/mdld_attribute/"
-EXAMPLE_URL="http://mdld_attribute.example.mikemitterer.at/"
+RSYNC_DESTINATION=":~/website/data/example/m4d_attribute/"
+EXAMPLE_URL="http://m4d_attribute.example.mikemitterer.at/"
 
