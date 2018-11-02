@@ -6,7 +6,6 @@ import 'package:m4d_core/m4d_ioc.dart' as ioc;
 import 'package:m4d_core/services.dart' as coreService;
 import "package:m4d_components/m4d_components.dart";
 
-import "package:m4d_directive/directive/components/interfaces/stores.dart";
 import "package:m4d_directive/m4d_directive.dart";
 import "package:m4d_directive/services.dart" as service;
 
@@ -20,7 +19,7 @@ class Application extends MaterialApplication {
             widget.checked = true;
             widget.onClick.listen((_) {
                 _logger.info("Clicked!");
-                _store.withBorder = widget.checked;
+                _store.prop<bool>("hasBorder").value = widget.checked;
             });
         });
     }
@@ -46,11 +45,10 @@ main() async {
 class AppStore extends DefaultSimpleDataStore {
 
     AppStore() {
-        value<bool>("hasBorder",true);
+        prop<bool>("hasBorder").value = true;
     }
 
     bool get withBorder => contains("hasBorder") ? bindings["hasBorder"].toBool() : false;
-    void set withBorder(final bool hasBorder) => value<bool>("hasBorder",hasBorder);
-
+    void set withBorder(final bool hasBorder) => prop<bool>("hasBorder").value = hasBorder;
 }
 

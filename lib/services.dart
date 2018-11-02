@@ -25,3 +25,4 @@ import 'package:m4d_core/m4d_ioc.dart';
 const ModelObserverFactory = Service("m4d_directive.ModelObserverFactory",ServiceType.Instance);
 
 const SimpleDataStore = Service("m4d_directive.SimpleDataStore",ServiceType.Instance);
+const SimpleValueStore = Service("m4d_directive.SimpleValueStore",ServiceType.Instance);

@@ -40,7 +40,7 @@ export "package:m4d_core/m4d_core.dart";
 
 import "package:m4d_core/m4d_ioc.dart" as ioc;
 
-//import "package:m4d_components/m4d_components.dart";
+import "package:m4d_components/m4d_components.dart";
 //import "package:m4d_components/m4d_formatter.dart";
 
 import 'package:m4d_flux/m4d_flux.dart';
@@ -49,16 +49,12 @@ export 'package:m4d_flux/m4d_flux.dart';
 import 'directive/components/interfaces/stores.dart';
 import 'services.dart' as service;
 
-part "directive/components/MaterialAttribute.dart";
-
 part "directive/components/MaterialClass.dart";
+part "directive/components/MaterialAttribute.dart";
+part "directive/components/MaterialModel.dart";
+part "directive/components/model/ModelObserver.dart";
+part "directive/components/model/ModelObserverFactory.dart";
 
-//part "directive/components/MaterialModel.dart";
-//part "directive/components/MaterialObserve.dart";
-//part "directive/components/MaterialTranslate.dart";
-
-//part "directive/components/model/ModelObserver.dart";
-//part "directive/components/model/ModelObserverFactory.dart";
 
 part "directive/utils.dart";
 
@@ -92,12 +88,12 @@ class DefaultSimpleDataStore extends Emitter implements SimpleValueStore {
     bool contains(final String varname) => bindings.containsKey(varname);
 
     @override
-    ObservableProperty<T> value<T>(final String varname,final T value) {
+    ObservableProperty<T> prop<T>(final String varname) {
         if(!bindings.containsKey(varname)) {
-            bindings[varname] = ObservableProperty<T>(value);
+            bindings[varname] = ObservableProperty<T>(null);
+            print("$varname changed...");
             bindings[varname].onChange.listen((_) => emitChange());
         }
-        bindings[varname].value = value;
         return bindings[varname];
     }
 }
@@ -105,7 +101,8 @@ class DefaultSimpleDataStore extends Emitter implements SimpleValueStore {
 void registerMdlDirectiveComponents() {
     registerMaterialAttribute();
     registerMaterialClass();
-    // registerMaterialModel();
+    registerMaterialModel();
+    
     // registerMaterialObserve();
     // registerMaterialTranslate();
 
@@ -114,11 +111,15 @@ void registerMdlDirectiveComponents() {
 }
 
 class DirectivesModule extends ioc.IOCModule {
+    // One instance for SimpleDataStore and for SimpleValueStoree
+    final _store = DefaultSimpleDataStore();
+
     @override
     configure() {
         registerMdlDirectiveComponents();
 
-        ioc.IOCContainer().bind(service.SimpleDataStore).to(DefaultSimpleDataStore());
+        ioc.IOCContainer().bind(service.SimpleDataStore).to(_store);
+        ioc.IOCContainer().bind(service.SimpleValueStore).to(_store);
     }
 
 //    @override

@@ -6,7 +6,6 @@ import 'package:m4d_core/m4d_ioc.dart' as ioc;
 import 'package:m4d_core/services.dart' as coreService;
 import "package:m4d_components/m4d_components.dart";
 
-import "package:m4d_directive/directive/components/interfaces/stores.dart";
 import "package:m4d_directive/m4d_directive.dart";
 import "package:m4d_directive/services.dart" as service;
 
@@ -59,13 +58,13 @@ main() async {
 class AppStore extends DefaultSimpleDataStore {
 
     AppStore() {
-        value<bool>("hasBorder",true);
-        value<bool>("checkAttribute",false);
+        prop<bool>("hasBorder").value = true;
+        prop<bool>("checkAttribute").value = false;
     }
 
     bool get withBorder => contains("hasBorder") ? bindings["hasBorder"].toBool() : false;
-    void set withBorder(final bool hasBorder) => value<bool>("hasBorder",hasBorder);
+    void set withBorder(final bool hasBorder) => prop<bool>("hasBorder").value = hasBorder;
 
     bool get enabled => contains("checkAttribute") ? bindings["checkAttribute"].toBool() : false;
-    void set enabled(final bool hasBorder) => value<bool>("checkAttribute",hasBorder);
+    void set enabled(final bool hasBorder) => prop<bool>("checkAttribute").value = hasBorder;
 }
