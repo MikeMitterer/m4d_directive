@@ -25,16 +25,13 @@ library m4d_directive;
 import 'dart:html' as dom;
 import 'package:meta/meta.dart';
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:logging/logging.dart';
 import 'package:validate/validate.dart';
-import 'package:l10n/l10n.dart';
 
 import "package:m4d_core/core/interfaces.dart";
 
 import "package:m4d_core/m4d_core.dart";
-import "package:m4d_core/m4d_utils.dart";
 
 export "package:m4d_core/m4d_core.dart";
 
