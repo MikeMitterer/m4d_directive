@@ -19,7 +19,7 @@ main() async {
     // configLogging();
 
     final String html = '''
-    <div class="testtext" mdl-attribute="hasBorder : 'border: 5px solid yellow'">
+    <div class="testtext" mdl-attribute="hasBorder : style='border: 5px solid yellow'">
         Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
         dolore magna aliquyam erat, sed diam voluptua.
     </div>
@@ -60,9 +60,9 @@ main() async {
             final testStore = ioc.IOCContainer().resolve(service.SimpleDataStore).as<_TestStore>();
             testStore.withBorder = true;
 
-            await waitUntil(() => div.attributes.containsKey("border"));
+            await waitUntil(() => div.attributes.containsKey("style"));
 
-            expect(div.attributes["border"],"5px solid yellow");
+            expect(div.attributes["style"],"border: 5px solid yellow");
         }); // end of 'Change class via model' test
 
     });
