@@ -17,6 +17,7 @@ dependencies:
   console_log_handler: ^1.0.0
 
   path: ^1.4.0
+  meta: ^1.1.0
 
   m4d_core: '>=0.1.0 <1.0.0'
     # path: /Volumes/Daten/DevLocal/DevDart/m4d/m4d_core
