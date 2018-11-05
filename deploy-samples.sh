@@ -68,6 +68,9 @@ usage() {
     echo
     echo -e "\t-l | --list     [example_name]                   Lists all examples"
     echo -e "\t                                                 from '${YELLOW}${EXAMPLE_FOLDER}'${NC}-folder"
+    echo -e "\t     --urls                                      Lists url's"
+    echo -e "\t     --urls-readme                               List url's in MD-Format"
+    echo -e "\t     --urls-web                                  List url's in HTML-Format"
     echo
     echo -e "\t- Init ------------------------------------------------------------------------------"
     echo -e "\t-x | --prepare  [example_name]                   Prepare sample (calls 'prep-script')"
@@ -94,6 +97,20 @@ case "${CMDLINE}" in
             listSamples "${EXAMPLES[@]}"
         fi
     ;;
+
+    --urls)
+        listURLs
+    ;;
+
+    --urls-readme)
+        listURLs4README
+    ;;
+
+    --urls-web)
+        # mkdir -p tmp && ./deploy-samples.sh --urls-web > tmp/links4web.html
+        listURL4WebSite "Material 4 Dart / Directives" "m4d_directive" "${EXAMPLES[@]}"
+    ;;
+
 
     -x|prepare|-prepare|--prepare)
         if [ -n "${OPTION1+set}" -a "${OPTION1}" != ""  ]; then
