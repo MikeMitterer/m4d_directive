@@ -9,6 +9,6 @@ abstract class SimpleDataStore extends Emitter {
 }
 
 abstract class SimpleValueStore extends SimpleDataStore {
-    ObservableProperty<T> prop<T>(final String varname);
+    ObservableProperty<T> prop<T>(final String varname, {
+        final T initWith = null, final FormatObservedValue<T> formatter = null });
 }
-

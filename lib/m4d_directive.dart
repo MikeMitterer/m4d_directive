@@ -85,10 +85,12 @@ class DefaultSimpleDataStore extends Emitter implements SimpleValueStore {
     bool contains(final String varname) => bindings.containsKey(varname);
 
     @override
-    ObservableProperty<T> prop<T>(final String varname) {
+    ObservableProperty<T> prop<T>(final String varname,{
+            final T initWith = null, final FormatObservedValue<T> formatter = null }) {
+
         if(!bindings.containsKey(varname)) {
-            bindings[varname] = ObservableProperty<T>(null);
-            print("$varname changed...");
+            bindings[varname] = ObservableProperty<T>(initWith, formatter: formatter);
+            //print("$varname changed...");
             bindings[varname].onChange.listen((_) => emitChange());
         }
         return bindings[varname];
