@@ -93,6 +93,11 @@ class DefaultSimpleDataStore extends Emitter implements SimpleValueStore {
             //print("$varname changed...");
             bindings[varname].onChange.listen((_) => emitChange());
         }
+        
+        if(formatter != null) {
+            bindings[varname].onFormat(formatter);
+        }
+        
         return bindings[varname];
     }
 }
