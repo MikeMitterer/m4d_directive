@@ -70,6 +70,8 @@ part "directive/utils.dart";
 ///         final store = ioc.IOCContainer().resolve(service.SimpleDataStore).as<MyDataStore>();
 ///     }
 class DefaultSimpleDataStore extends Emitter implements SimpleValueStore {
+    final Logger _logger = new Logger('m4d_directive.DefaultSimpleDataStore');
+
     @protected
     final bindings = Map<String, ObservableProperty>();
 
@@ -90,8 +92,10 @@ class DefaultSimpleDataStore extends Emitter implements SimpleValueStore {
 
         if(!bindings.containsKey(varname)) {
             bindings[varname] = ObservableProperty<T>(initWith, formatter: formatter);
-            //print("$varname changed...");
-            bindings[varname].onChange.listen((_) => emitChange());
+            bindings[varname].onChange.listen((_) {
+                _logger.fine("$varname changed to ${bindings[varname].value}...");
+                emitChange();
+            });
         }
         
         if(formatter != null) {
