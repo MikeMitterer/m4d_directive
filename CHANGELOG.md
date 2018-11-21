@@ -4,6 +4,7 @@ Material Design 4 Dart - Directives
 ## [Unreleased](http://github.com/mikemitterer/m4d_directive/compare/v0.1...HEAD)
 
 ### Feature
+* SimpleDataStoreMixin added [13e0350](https://github.com/mikemitterer/m4d_directive/commit/13e0350faee0ba5c9a48e178f1149b0e5ddc844c)
 * Added some init-vars for SimpleValueStore [5e2bcff](https://github.com/mikemitterer/m4d_directive/commit/5e2bcff572bc12f42540de8b81f9009e0368300a)
 
 ### Bugs
