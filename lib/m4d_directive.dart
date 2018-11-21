@@ -44,6 +44,8 @@ import 'package:m4d_flux/m4d_flux.dart';
 export 'package:m4d_flux/m4d_flux.dart';
 
 import 'directive/components/interfaces/stores.dart';
+import 'directive/components/interfaces/actions.dart';
+
 import 'services.dart' as service;
 
 part "directive/components/MaterialClass.dart";
@@ -81,7 +83,7 @@ abstract class SimpleDataStoreMixin implements SimpleValueStore {
             bindings[varname] = ObservableProperty<T>(initWith, formatter: formatter);
             bindings[varname].onChange.listen((_) {
                 _logger.fine("$varname changed to ${bindings[varname].value}...");
-                emitChange();
+                emitChange(action: PropertyChangedAction(varname));
             });
         }
 
@@ -91,6 +93,7 @@ abstract class SimpleDataStoreMixin implements SimpleValueStore {
 
         return bindings[varname];
     }
+
 }
 
 /// Default implementation for SimpleValueStore
