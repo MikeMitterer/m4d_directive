@@ -55,21 +55,8 @@ part "directive/components/model/ModelObserverFactory.dart";
 
 part "directive/utils.dart";
 
-/// Default implementation for SimpleValueStore
-///
-/// Overwrite it like this:
-///     class MyDataStore extends Emitter implements SimpleValueStore {
-///         ...
-///     }
-///
-///     main() {
-///         ioc.IOCContainer().bind(service.SimpleDataStore).to(MyDataStore());
-///     }
-///
-///     void somewhereInYourCode() {
-///         final store = ioc.IOCContainer().resolve(service.SimpleDataStore).as<MyDataStore>();
-///     }
-class DefaultSimpleDataStore extends Emitter implements SimpleValueStore {
+/// Mixin for simplifying the integration into your own App-Store
+abstract class SimpleDataStoreMixin implements SimpleValueStore {
     final Logger _logger = new Logger('m4d_directive.DefaultSimpleDataStore');
 
     @protected
@@ -88,7 +75,7 @@ class DefaultSimpleDataStore extends Emitter implements SimpleValueStore {
 
     @override
     ObservableProperty<T> prop<T>(final String varname,{
-            final T initWith = null, final FormatObservedValue<T> formatter = null }) {
+        final T initWith = null, final FormatObservedValue<T> formatter = null }) {
 
         if(!bindings.containsKey(varname)) {
             bindings[varname] = ObservableProperty<T>(initWith, formatter: formatter);
@@ -97,14 +84,30 @@ class DefaultSimpleDataStore extends Emitter implements SimpleValueStore {
                 emitChange();
             });
         }
-        
+
         if(formatter != null) {
             bindings[varname].onFormat(formatter);
         }
-        
+
         return bindings[varname];
     }
 }
+
+/// Default implementation for SimpleValueStore
+///
+/// Overwrite it like this:
+///     class MyDataStore extends Emitter implements SimpleValueStore {
+///         ...
+///     }
+///
+///     main() {
+///         ioc.IOCContainer().bind(service.SimpleDataStore).to(MyDataStore());
+///     }
+///
+///     void somewhereInYourCode() {
+///         final store = ioc.IOCContainer().resolve(service.SimpleDataStore).as<MyDataStore>();
+///     }
+class DefaultSimpleDataStore extends Emitter with SimpleDataStoreMixin {}
 
 void registerMdlDirectiveComponents() {
     registerMaterialAttribute();

@@ -8,7 +8,7 @@ main() async {
         CoreComponentsModule(), DirectivesModule()
     ]);
 
-    final app = await componentHandler().run();
+    final app = await componentHandler().upgrade();
     app.run();
 }
 
