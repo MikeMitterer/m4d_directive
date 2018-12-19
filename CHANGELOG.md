@@ -9,6 +9,7 @@ Material Design 4 Dart - Directives
 * Added some init-vars for SimpleValueStore [5e2bcff](https://github.com/mikemitterer/m4d_directive/commit/5e2bcff572bc12f42540de8b81f9009e0368300a)
 
 ### Bugs
+* Wrong description in HTML-Template [9221ac3](https://github.com/mikemitterer/m4d_directive/commit/9221ac3dc56e0b0fcc4b8a50fa793b8e05e52c12)
 * Formatter was not propperly set in DefaultSimpleDataStore [f0d20a5](https://github.com/mikemitterer/m4d_directive/commit/f0d20a5c4726c8a53ba6c502f2b251f632c9cd7e)
 
 ### Docs
