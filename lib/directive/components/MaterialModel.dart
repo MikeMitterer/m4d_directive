@@ -55,7 +55,7 @@ class MaterialModel extends MdlComponent implements RefreshableComponent {
     final SimpleValueStore _store;
     final ModelObserverFactory _observerFactory;
 
-    MaterialModel.fromElement(final dom.HtmlElement element,final ioc.IOCContainer iocContainer)
+    MaterialModel.fromElement(final dom.HtmlElement element,final ioc.Container iocContainer)
         : _store = iocContainer.resolve(service.SimpleValueStore).as<SimpleValueStore>(),
             _observerFactory = ModelObserverFactory(), super(element,iocContainer) {
     }
@@ -106,7 +106,7 @@ class MaterialModel extends MdlComponent implements RefreshableComponent {
 void registerMaterialModel() {
     final MdlConfig config = new MdlConfig<MaterialModel>(
         _MaterialModelConstant.WIDGET_SELECTOR,
-            (final dom.HtmlElement element,final ioc.IOCContainer iocContainer)
+            (final dom.HtmlElement element,final ioc.Container iocContainer)
                 => new MaterialModel.fromElement(element,iocContainer)
     );
     

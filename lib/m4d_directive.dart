@@ -124,7 +124,7 @@ void registerMdlDirectiveComponents() {
 
 }
 
-class DirectivesModule extends ioc.IOCModule {
+class DirectivesModule extends ioc.Module {
     // One instance for SimpleDataStore and for SimpleValueStoree
     final _store = DefaultSimpleDataStore();
 
@@ -132,8 +132,8 @@ class DirectivesModule extends ioc.IOCModule {
     configure() {
         registerMdlDirectiveComponents();
 
-        ioc.IOCContainer().bind(service.SimpleDataStore).to(_store);
-        ioc.IOCContainer().bind(service.SimpleValueStore).to(_store);
+        ioc.Container().bind(service.SimpleDataStore).to(_store);
+        ioc.Container().bind(service.SimpleValueStore).to(_store);
     }
 
 //    @override

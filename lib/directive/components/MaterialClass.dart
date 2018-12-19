@@ -57,7 +57,7 @@ class MaterialClass extends MdlComponent {
     final SimpleDataStore _store;
     final _conditions = Set<_ClassCondition>();
 
-    MaterialClass.fromElement(final dom.HtmlElement element,final ioc.IOCContainer iocContainer)
+    MaterialClass.fromElement(final dom.HtmlElement element,final ioc.Container iocContainer)
         : _store = iocContainer.resolve(service.SimpleDataStore).as<SimpleDataStore>(),
             super(element,iocContainer) {
     }
@@ -164,7 +164,7 @@ class MaterialClass extends MdlComponent {
 void registerMaterialClass() {
     final MdlConfig config = new MdlConfig<MaterialClass>(
         _MaterialClassConstant.WIDGET_SELECTOR,
-            (final dom.HtmlElement element,final ioc.IOCContainer iocContainer)
+            (final dom.HtmlElement element,final ioc.Container iocContainer)
                 => new MaterialClass.fromElement(element,iocContainer)
     );
     

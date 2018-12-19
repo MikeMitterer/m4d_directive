@@ -57,7 +57,7 @@ class MaterialAttribute extends MdlComponent {
     final SimpleDataStore _store;
     final _conditions = List<_AttributeCondition>();
 
-    MaterialAttribute.fromElement(final dom.HtmlElement element,final ioc.IOCContainer iocContainer)
+    MaterialAttribute.fromElement(final dom.HtmlElement element,final ioc.Container iocContainer)
         : _store = iocContainer.resolve(service.SimpleDataStore).as<SimpleDataStore>(),
             super(element,iocContainer) {
     }
@@ -162,7 +162,7 @@ class MaterialAttribute extends MdlComponent {
 void registerMaterialAttribute() {
     final MdlConfig config = new MdlConfig<MaterialAttribute>(
         _MaterialAttributeConstant.WIDGET_SELECTOR,
-            (final dom.HtmlElement element,final ioc.IOCContainer iocContainer)
+            (final dom.HtmlElement element,final ioc.Container iocContainer)
                 => new MaterialAttribute.fromElement(element,iocContainer)
     );
     

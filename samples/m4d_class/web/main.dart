@@ -24,17 +24,17 @@ class Application extends MaterialApplication {
         });
     }
 
-    AppStore get _store => ioc.IOCContainer().resolve(service.SimpleDataStore).as<AppStore>();
+    AppStore get _store => ioc.Container().resolve(service.SimpleDataStore).as<AppStore>();
 }
 
 main() async {
     configLogging(show: Level.INFO);
 
-    ioc.IOCContainer.bindModules([
+    ioc.Container.bindModules([
         CoreComponentsModule(), DirectivesModule()
     ]).bind(coreService.Application).to(Application());
     
-    ioc.IOCContainer().bind(service.SimpleDataStore).to(AppStore());
+    ioc.Container().bind(service.SimpleDataStore).to(AppStore());
 
     final Application app = await componentHandler().run();
 

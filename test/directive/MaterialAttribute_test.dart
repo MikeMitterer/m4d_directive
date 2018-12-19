@@ -28,8 +28,8 @@ main() async {
     final DomRenderer renderer = new DomRenderer();
     final dom.DivElement parent = new dom.DivElement();
 
-    ioc.IOCContainer.bindModules([ DirectivesModule() ]);
-    ioc.IOCContainer().bind(service.SimpleDataStore).to(_TestStore());
+    ioc.Container.bindModules([ DirectivesModule() ]);
+    ioc.Container().bind(service.SimpleDataStore).to(_TestStore());
 
     group('MaterialAttribute', () {
         setUp(() {
@@ -57,7 +57,7 @@ main() async {
             // testtext mdl-upgraded mdl-class is-upgraded
             expect(div.attributes.containsKey("border"),isFalse);
 
-            final testStore = ioc.IOCContainer().resolve(service.SimpleDataStore).as<_TestStore>();
+            final testStore = ioc.Container().resolve(service.SimpleDataStore).as<_TestStore>();
             testStore.withBorder = true;
 
             await waitUntil(() => div.attributes.containsKey("style"));
