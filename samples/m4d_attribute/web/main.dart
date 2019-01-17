@@ -50,7 +50,7 @@ main() async {
 
     ioc.Container().bind(service.SimpleDataStore).to(AppStore());
 
-    final Application app = await componentHandler().run();
+    final Application app = await componentHandler().upgrade();
 
     app.run();
 }
