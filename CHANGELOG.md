@@ -15,6 +15,9 @@ Material Design 4 Dart - Directives
 ### Docs
 * Better log-output for DefaultSimpleDataStore [acde27d](https://github.com/mikemitterer/m4d_directive/commit/acde27d842593a22d228edce09f87af3ea41d2f4)
 
+### Refactor
+* Changed 'componentHandler().run to ...uprgrade() [d3dde0c](https://github.com/mikemitterer/m4d_directive/commit/d3dde0c287e9d969ba9a51dc762c8a2a21063b50)
+
 ## [v0.1](http://github.com/mikemitterer/m4d_directive/compare/v0.1) - 2018-11-02
 
 ### Feature
